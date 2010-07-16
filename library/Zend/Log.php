@@ -364,6 +364,7 @@ class Zend_Log
         }
 
         $this->_priorities[$priority] = $name;
+        return $this;
     }
 
     /**
@@ -391,6 +392,7 @@ class Zend_Log
         }
 
         $this->_filters[] = $filter;
+        return $this;
     }
 
     /**
@@ -416,6 +418,7 @@ class Zend_Log
         }
 
         $this->_writers[] = $writer;
+        return $this;
     }
 
     /**
@@ -425,7 +428,9 @@ class Zend_Log
      * @param  $value   Value of the field
      * @return void
      */
-    public function setEventItem($name, $value) {
+    public function setEventItem($name, $value)
+    {
         $this->_extras = array_merge($this->_extras, array($name => $value));
+        return $this;
     }
 }
