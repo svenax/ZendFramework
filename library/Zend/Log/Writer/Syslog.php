@@ -179,7 +179,7 @@ class Zend_Log_Writer_Syslog extends Zend_Log_Writer_Abstract
     public function setFacility($facility)
     {
         if ($this->_facility === $facility) {
-            return $this;
+            return;
         }
 
         if (!count($this->_validFacilities)) {
@@ -200,7 +200,6 @@ class Zend_Log_Writer_Syslog extends Zend_Log_Writer_Abstract
 
         $this->_facility = $facility;
         $this->_initializeSyslog();
-        return $this;
     }
 
     /**
@@ -212,11 +211,10 @@ class Zend_Log_Writer_Syslog extends Zend_Log_Writer_Abstract
     public function setApplicationName($application)
     {
         if ($this->_application === $application) {
-            return $this;
+            return;
         }
         $this->_application = $application;
         $this->_initializeSyslog();
-        return $this;
     }
 
     /**

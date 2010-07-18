@@ -290,7 +290,7 @@ class Zend_Log_LogTest extends PHPUnit_Framework_TestCase
         $logger = Zend_Log::factory($cfg['log']);
         $this->assertTrue($logger instanceof Zend_Log);
     }
-    
+
 	/**
      * @group ZF-9955
      */
@@ -319,20 +319,6 @@ class Zend_Log_LogTest extends PHPUnit_Framework_TestCase
             $this->assertType('Zend_Log_Exception', $e);
             $this->assertRegExp('#^(Zend_Log_Filter_NotImplementsFilterInterface|The\sspecified\sfilter)#', $e->getMessage());
         }
-    }
-
-    /**
-     * @group ZF-8953
-     */
-    public function testFluentInterface()
-    {
-        $logger   = new Zend_Log();
-        $instance = $logger->addPriority('all', 8)
-                           ->addFilter(1)
-                           ->addWriter(array('writerName' => 'Null'))
-                           ->setEventItem('os', PHP_OS);
-
-        $this->assertTrue($instance instanceof Zend_Log);
     }
 
     /**
