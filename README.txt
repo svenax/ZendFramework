@@ -164,6 +164,16 @@ New Configuration Formats:
     Stas Malyshev created both adapters for Zend Framework;
     Zend_Config_Json also had assistance from Sudheer Satyanarayana.
 
+URL Shortening:
+
+    Zend_Service_ShortUrl was added for this release. The component
+    provides a simple interface for use with most URL shortening
+    services, defining simply the methods "shorten" and "unshorten".
+    Adapters for two services, http://jdem.cz and http://tinyurl.com,
+    are provided with this release. 
+
+    Zend_Service_ShortUrl was contributed by Martin Hujer.
+
 Additional View Helpers:
 
     Several new view helpers are now exposed:
