@@ -134,7 +134,6 @@ class Zend_XmlRpc_ValueTest extends PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('Zend_XmlRpc_Value_Exception', 'Overlong integer given');
         $x = Zend_XmlRpc_Value::getXmlRpcValue(PHP_INT_MAX + 5000, Zend_XmlRpc_Value::XMLRPC_TYPE_I4);
-        var_dump($x);
     }
 
     /**
@@ -755,6 +754,26 @@ class Zend_XmlRpc_ValueTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('dateTime.iso8601', $val->getType());
         $this->assertSame($dateString, $val->getValue());
         $this->assertEquals(trim($xml), trim($val->saveXml()));
+    }
+
+    /**
+     * @group ZF-10776
+     */
+    public function testGetValueDatetime()
+    {
+        $expectedValue = '20100101T00:00:00';
+        $zfDate         = new Zend_Date('2010-01-01 00:00:00', 'yyyy-MM-dd HH:mm:ss');
+        $phpDatetime     = new DateTime('20100101T00:00:00');
+        $phpDateNative   = '20100101T00:00:00';
+
+        $xmlRpcValueDateTime = new Zend_XmlRpc_Value_DateTime($zfDate);
+        $this->assertEquals($expectedValue, $xmlRpcValueDateTime->getValue());
+
+        $xmlRpcValueDateTime = new Zend_XmlRpc_Value_DateTime($phpDatetime);
+        $this->assertEquals($expectedValue, $xmlRpcValueDateTime->getValue());
+
+        $xmlRpcValueDateTime = new Zend_XmlRpc_Value_DateTime($phpDateNative);
+        $this->assertEquals($expectedValue, $xmlRpcValueDateTime->getValue());
     }
 
     // Base64
