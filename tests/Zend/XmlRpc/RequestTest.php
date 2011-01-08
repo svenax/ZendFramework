@@ -21,6 +21,9 @@
  */
 
 require_once 'Zend/XmlRpc/Request.php';
+require_once 'Zend/XmlRpc/Value/Nil.php';
+require_once 'Zend/XmlRpc/Value/String.php';
+
 
 /**
  * Test case for Zend_XmlRpc_Request
