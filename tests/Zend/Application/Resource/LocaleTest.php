@@ -125,7 +125,7 @@ class Zend_Application_Resource_LocaleTest extends PHPUnit_Framework_TestCase
         $locale   = $resource->getLocale();
 
         // This test will fail if your configured locale is kok_IN
-        $this->assertFalse('kok_IN' == $locale->__toString());
+        $this->assertEquals('kok_IN', $locale->__toString());
         $this->assertSame(Zend_Registry::get('Zend_Locale'), $locale);
     }
 }
