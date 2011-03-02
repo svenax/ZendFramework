@@ -155,7 +155,7 @@ class Zend_Tool_Project_Context_Zf_ViewScriptFile extends Zend_Tool_Project_Cont
   <h2><?php echo \$this->message ?></h2>
 
   <?php if (isset(\$this->exception)): ?>
-
+  
   <h3>Exception information:</h3>
   <p>
       <b>Message:</b> <?php echo \$this->exception->getMessage() ?>
@@ -166,8 +166,9 @@ class Zend_Tool_Project_Context_Zf_ViewScriptFile extends Zend_Tool_Project_Cont
   </pre>
 
   <h3>Request Parameters:</h3>
-  <pre><?php echo var_export(\$this->request->getParams(), true) ?>
+  <pre><?php echo \$this->escape(var_export(\$this->request->getParams(), true)) ?>
   </pre>
+
   <?php endif ?>
 
 </body>
