@@ -319,6 +319,22 @@ class Zend_Feed_ReaderTest extends PHPUnit_Framework_TestCase
         }
         $this->assertTrue(Zend_Feed_Reader::isRegistered('JungleBooks'));
     }
+    
+    /**
+     * @group ZF-11184
+     */
+    public function testImportingUriWithEmptyResponseBodyTriggersException()
+    {
+        $currClient = Zend_Feed_Reader::getHttpClient();
+        $testAdapter = new Zend_Http_Client_Adapter_Test();
+        $testAdapter->setResponse(new Zend_Http_Response(200,array(),''));
+        Zend_Feed_Reader::setHttpClient(new Zend_Http_Client(null, array(
+            'adapter'=>$testAdapter
+        )));
+        
+        $this->setExpectedException('Zend_Feed_Exception', 'Feed failed to load');
+        $result = Zend_Feed_Reader::import('http://www.example.com');
+    }
 
     protected function _getTempDirectory()
     {
