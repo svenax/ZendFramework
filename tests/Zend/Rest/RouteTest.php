@@ -958,8 +958,9 @@ class Zend_Rest_RouteTest extends PHPUnit_Framework_TestCase
     private function _invokeRouteMatch($request, $config = array(), $route = null)
     {
         $this->_front->setRequest($request);
-        if ($route == null)
+        if ($route == null) {
         	$route = new Zend_Rest_Route($this->_front, array(), $config);
+        }
         $values = $route->match($request);
         return $values;
     }
