@@ -125,4 +125,16 @@ class Zend_Gdata_AuthSubTest extends PHPUnit_Framework_TestCase
             $c->setAuthSubPrivateKeyFile("zendauthsubfilenotfound",  null, true);
         }
     }
+    /**
+     * @group ZF-11351
+     * @expectedException Zend_Gdata_App_HttpException
+     */
+    public function testAuthSubGetHttpClientShouldThrowExceptionOnVanillaHttpClient()
+    {
+        $client = new Zend_Http_Client();
+        $client->setUri('http://example.com/AuthSub');
+        $gdclient = Zend_Gdata_AuthSub::getHttpClient('FakeToken', $client);
+        $this->fail('Expected exception Zend_Gdata_App_HttpException not raised!');
+    }
+    
 }
