@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- EN-Revision: 21823 -->
+<!-- EN-Revision: 24249 -->
 <!-- Reviewed: no -->
 <sect1 id="zend.config.adapters.ini">
     <title>Zend_Config_Ini</title>
@@ -125,7 +125,7 @@ echo $config->database->params->dbname; // affiche "dbname"
                     </row>
                     <row>
                         <entry>
-                            <varname>$options</varname> (par défault <constant>FALSE</constant>)
+                            <varname>$options</varname> (par défaut <constant>FALSE</constant>)
                         </entry>
                         <entry>
                             Tableau d'options. Les clés suivantes sont supportées&#160;:

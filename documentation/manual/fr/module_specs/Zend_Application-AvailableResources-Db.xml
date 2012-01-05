@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- EN-Revision: 22741 -->
+<!-- EN-Revision: 24249 -->
 <!-- Reviewed: no -->
 <sect2 id="zend.application.available-resources.db">
     <title>Zend_Application_Resource_Db</title>
@@ -54,7 +54,7 @@
         <title>Exemple de configuration d'une ressource d'adaptateur de base données</title>
 
         <para>
-            Voici un exmple de configuration <acronym>INI</acronym> qui peut-être utilisé pour
+            Voici un exemple de configuration <acronym>INI</acronym> qui peut-être utilisé pour
             initialiser une ressource de base de données.
         </para>
 

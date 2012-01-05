@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- EN-Revision: 22140 -->
+<!-- EN-Revision: 24434 -->
 <!-- Reviewed: no -->
 <sect1 id="zend.cache.backends">
     <title>Les backends Zend_Cache</title>
@@ -35,7 +35,7 @@
                     <row>
                         <entry><emphasis>cache_dir</emphasis></entry>
                         <entry><type>String</type></entry>
-                        <entry><filename>/tmp/</filename></entry>
+                        <entry>[system temp dir]</entry>
                         <entry>Répertoire où stocker les fichiers de cache</entry>
                     </row>
                     <row>
@@ -106,7 +106,7 @@
                     <row>
                         <entry><emphasis>cache_file_umask</emphasis></entry>
                         <entry><type>Integer</type></entry>
-                        <entry>0700</entry>
+                        <entry>0600</entry>
                         <entry>umask des fichiers de cache.</entry>
                     </row>
                     <row>
@@ -248,6 +248,79 @@
                         <entry>
                             <constant>TRUE</constant>, si vous voulez utiliser le mode de
                             compatibilité avec les anciens serveurs&#160;/&#160;extensions memcache
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </sect2>
+
+    <sect2 id="zend.cache.backends.libmemcached">
+        <title>Zend_Cache_Backend_Libmemcached</title>
+
+        <para>
+            Ce backend (étendu) stocke les enregistrements de cache dans un serveur memcached.
+            <ulink url="http://www.danga.com/memcached/">memcached</ulink> est un système distribué
+            de cache d'objet en mémoire de haute performance. Pour utiliser ce backend, vous avez
+            besoin d'un démon memcached et de l'extension
+            <ulink url="http://pecl.php.net/package/memcached"><acronym>PECL</acronym>
+            memcached</ulink>.
+        </para>
+
+        <para>
+            Attention: avec ce backend, les balises ("tags") ne sont pas supportées pour le
+            moment comme l'argument "doNotTestCacheValidity=true".
+        </para>
+
+        <para>Les options disponibles sont&#160;:</para>
+
+        <table id="zend.cache.backends.libmemcached.table">
+            <title>Options du backend Libmemcached</title>
+
+            <tgroup cols="4">
+                <thead>
+                    <row>
+                        <entry>Option</entry>
+                        <entry>Type de données</entry>
+                        <entry>Valeur par défaut</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+
+                <tbody>
+                    <row>
+                        <entry><emphasis>servers</emphasis></entry>
+                        <entry>
+                            <type>Array</type>
+                        </entry>
+                        <entry>
+                            <command>array(array('host' =&gt; 'localhost', 'port' =&gt; 11211,
+                            'weight' =&gt; 1))</command>
+                        </entry>
+                        <entry>
+                            Un tableau de serveurs memcached&#160;; chaque serveur memcached est
+                            décrit par un tableau associatif&#160;: 'host' =&gt; (string)&#160;: le
+                            nom du serveur memcached, 'port' =&gt; (int)&#160;: le port du serveur
+                            memcached, 'weight' =&gt; (int)&#160;: le poids du serveur memcached.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry><emphasis>client</emphasis></entry>
+                        <entry>
+                            <type>Array</type>
+                        </entry>
+                        <entry>
+                            <command>array( Memcached::OPT_DISTRIBUTION =&gt;
+                            Memcached::DISTRIBUTION_CONSISTENT, Memcached::OPT_HASH =&gt;
+                            Memcached::HASH_MD5, Memcached::OPT_LIBKETAMA_COMPATIBLE =&gt; true
+                            )</command>
+                        </entry>
+                        <entry>
+                            Un tableau associatif des options de client memcached. Les clés du
+                            tableau peuvent le nom de la constante d'option memcache (sans le OPT_)
+                            ou la valeur de type entier de celui-ci. Voir aussi
+                            <ulink url="http://php.net/manual/memcached.constants.php">les
+                            constantes Memcached dans le manuel <acronym>PHP</acronym></ulink>
                         </entry>
                     </row>
                 </tbody>
@@ -698,7 +771,7 @@ RewriteRule ^.*$ index.php [NC,L]
                     <row>
                         <entry><emphasis>cache_file_umask</emphasis></entry>
                         <entry><type>Integer</type></entry>
-                        <entry>0700</entry>
+                        <entry>0600</entry>
                         <entry>umask for cached files.</entry>
                     </row>
 
