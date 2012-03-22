@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Reviewed: no -->
-<!-- EN-Revision: 20799 -->
+<!-- EN-Revision: 24249 -->
 <sect1 id="zend.text.table.introduction">
     <title>Zend_Text_Table(日本語)</title>
-
+    <!-- Skip-EN-Revisions: 22760 -->
+    <para>注意：このドキュメントでは、英語版のリビジョン 22760 の更新内容をスキップしています。</para>
     <para>
         <classname>Zend_Text_Table</classname> は、さまざまなデコレータを使用して
         テキストベースの表をその場で作成するためのコンポーネントです。

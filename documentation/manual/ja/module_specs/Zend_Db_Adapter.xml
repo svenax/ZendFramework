@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Reviewed: no -->
 <!-- EN-Revision: 24249 -->
-<!-- Skip-EN-Revisions: 21358 -->
 <sect1 id="zend.db.adapter">
-
     <title>Zend_Db_Adapter(日本語)</title>
-
+    <!-- Skip-EN-Revisions: 21358 -->
+    <para>注意：このドキュメントでは、英語版のリビジョン 21358 の更新内容をスキップしています。</para>
     <para>
         <classname>Zend_Db</classname> とその関連クラス群は、Zend Framework
         において <acronym>SQL</acronym> データベースとのインターフェイスを担当します。
