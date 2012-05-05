@@ -91,6 +91,35 @@ class Zend_Captcha_DumbTest extends PHPUnit_Framework_TestCase
         $this->assertContains(strrev($word), $html);
         $this->assertNotContains($word, $html);
     }
+
+    /**
+     * @group ZF-11522
+     */
+    public function testDefaultLabelIsUsedWhenNoAlternateLabelSet()
+    {
+        $this->assertEquals('Please type this word backwards', $this->captcha->getLabel());
+    }
+
+    /**
+     * @group ZF-11522
+     */
+    public function testChangeLabelViaSetterMethod()
+    {
+        $this->captcha->setLabel('Testing');
+        $this->assertEquals('Testing', $this->captcha->getLabel());
+    }
+
+    /**
+     * @group ZF-11522
+     */
+    public function testRendersLabelUsingProvidedValue()
+    {
+        $this->captcha->setLabel('Testing 123');
+
+        $id   = $this->captcha->generate('test');
+        $html = $this->captcha->render(new Zend_View);
+        $this->assertContains('Testing 123', $html);
+    }
 }
 
 class Zend_Captcha_DumbTest_SessionContainer
