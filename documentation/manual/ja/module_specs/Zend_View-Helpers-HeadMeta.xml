@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Reviewed: no -->
-<!-- EN-Revision: 23610 -->
+<!-- EN-Revision: 24868 -->
 <sect3 id="zend.view.helpers.initial.headmeta">
     <title>HeadMeta ヘルパー</title>
 
@@ -230,7 +230,7 @@ $this->headMeta()->appendHttpEquiv('Refresh',
         </para>
 
         <programlisting language="php"><![CDATA[
-$this->doctype(Zend_View_Helper_Doctype::XHTML_RDFA);
+$this->doctype(Zend_View_Helper_Doctype::XHTML1_RDFA);
 $this->headMeta()->setProperty('og:title', 'my article title');
 $this->headMeta()->setProperty('og:type', 'article');
 echo $this->headMeta();
