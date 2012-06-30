@@ -20,7 +20,7 @@
             de BBCode par exemple:
         </para>
 
-        <programlisting><![CDATA[
+        <programlisting language="text"><![CDATA[
 [b]foo[i]bar[/i][/b]baz
 ]]></programlisting>
 
@@ -79,7 +79,7 @@
             Des exemples de tags BBCode valides:
         </para>
 
-        <programlisting><![CDATA[
+        <programlisting language="text"><![CDATA[
 [b]
 [list=1]
 [code file=Zend/Markup.php]
@@ -208,7 +208,7 @@
                 Exemple des deux listes:
             </para>
 
-            <programlisting><![CDATA[
+            <programlisting language="text"><![CDATA[
 # Item 1
 # Item 2
 
