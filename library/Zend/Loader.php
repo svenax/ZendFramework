@@ -177,9 +177,6 @@ class Zend_Loader
 
         foreach (self::explodeIncludePath() as $path) {
             if ($path == '.') {
-                if (is_readable($filename)) {
-                    return true;
-                }
                 continue;
             }
             $file = $path . '/' . $filename;
