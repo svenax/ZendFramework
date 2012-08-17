@@ -309,6 +309,59 @@ EOF;
         $this->assertType('DOMDocument', $doc);
         $this->assertEquals('utf-8', $doc->encoding);
     }
+    
+    /**
+     * @group ZF-11376
+     */
+    public function testXhtmlDocumentWithXmlDeclaration()
+    {
+        $xhtmlWithXmlDecl = <<<EOB
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head><title /></head>
+    <body><p>Test paragraph.</p></body>
+</html>
+EOB;
+        $this->query->setDocument($xhtmlWithXmlDecl, 'utf-8');
+        $this->assertEquals(1, $this->query->query('//p')->count());
+    }
+    
+    /**
+     * @group ZF-12106
+     */
+    public function testXhtmlDocumentWithXmlAndDoctypeDeclaration()
+    {
+        $xhtmlWithXmlDecl = <<<EOB
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Virtual Library</title>
+  </head>
+  <body>
+    <p>Moved to <a href="http://example.org/">example.org</a>.</p>
+  </body>
+</html>
+EOB;
+        $this->query->setDocument($xhtmlWithXmlDecl, 'utf-8');
+        $this->assertEquals(1, $this->query->query('//p')->count());
+    }
+
+    public function testLoadingXmlContainingDoctypeShouldFailToPreventXxeAndXeeAttacks()
+    {
+        $xml = <<<XML
+<?xml version="1.0"?>
+<!DOCTYPE results [<!ENTITY harmless "completely harmless">]>
+<results>
+    <result>This result is &harmless;</result>
+</results>
+XML;
+        $this->query->setDocumentXml($xml);
+        $this->setExpectedException("Zend_Dom_Exception");
+        $this->query->queryXpath('/');
+    }
 }
 
 // Call Zend_Dom_QueryTest::main() if this source file is executed directly.
