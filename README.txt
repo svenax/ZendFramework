@@ -17,11 +17,13 @@ in recursion, which consumes CPU and memory resources, making Denial of
 Service (DoS) attacks easier to implement.
 
 The patches in 1.11.13 close both XXE and XEE vulnerabilities found in
-the framework. The former are mitigated by ensuring libxml_entity_loader
-is called before any SimpleXML calls are executed; the latter are
-mitigated by calling libxml_disable_entity_loader prior to instantiating
-a DOMDocument (or, in cases where SimpleXML is used, loading the XML via
-DOMDocument first, and then passing the object to simplexml_import_dom). 
+the framework. The former are mitigated by ensuring
+libxml_disable_entity_loader is called before any SimpleXML calls are
+executed; the latter are mitigated by looping through the DOMDocument
+instance and checking for XML_DOCUMENT_TYPE_NODE children, raising an
+exception if any are found (in cases where SimpleXML is used, loading
+the XML via DOMDocument first, and then passing the object to
+simplexml_import_dom). 
 
 The following components were patched:
 
