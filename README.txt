@@ -23,6 +23,13 @@ mitigated by calling libxml_disable_entity_loader prior to instantiating
 a DOMDocument (or, in cases where SimpleXML is used, loading the XML via
 DOMDocument first, and then passing the object to simplexml_import_dom). 
 
+The following components were patched:
+
+ - Zend_Dom
+ - Zend_Feed
+ - Zend_Soap
+ - Zend_XmlRpc
+
 Thanks goes to Pádraic Brady for identifying and patching these vectors.
 
 SECURITY NOTICE FOR 1.11.12
