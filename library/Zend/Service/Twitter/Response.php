@@ -20,9 +20,14 @@
  * @version    $Id$
  */
 
-namespace ZendService\Twitter;
-
+/**
+ * @see Zend_Http_Response
+ */
 require_once 'Zend/Http/Response.php';
+
+/**
+ * @see Zend_Json
+ */
 require_once 'Zend/Json.php';
 
 /**

@@ -26,6 +26,11 @@
 require_once 'Zend/Http/Client.php';
 
 /**
+ * @see Zend_Http_CookieJar
+ */
+require_once 'Zend/Http/CookieJar.php';
+
+/**
  * @see Zend_Oauth_Consumer
  */
 require_once 'Zend/Oauth/Consumer.php';
@@ -248,7 +253,7 @@ class Zend_Service_Twitter
         }
         if (empty($this->methodType)) {
             require_once 'Zend/Service/Twitter/Exception.php';
-            throw new Zend_Service_TwitterException(
+            throw new Zend_Service_Twitter_Exception(
                 'Invalid method "' . $method . '"'
             );
         }
@@ -1161,10 +1166,14 @@ class Zend_Service_Twitter
         $client = $this->getHttpClient();
         $client->resetParameters();
         if (null === $this->cookieJar) {
-            $client->clearCookies();
-            $this->cookieJar = $client->getCookies();
+            $cookieJar = $client->getCookieJar();
+            if (null === $cookieJar) {
+                $cookieJar = new Zend_Http_CookieJar();
+            }
+            $this->cookieJar = $cookieJar;
+            $this->cookieJar->reset();
         } else {
-            $client->setCookies($this->cookieJar);
+            $client->setCookieJar($this->cookieJar);
         }
     }
 
@@ -1233,8 +1242,7 @@ class Zend_Service_Twitter
         $client = $this->getHttpClient();
         $this->prepare($path, $client);
         $client->setParameterGet($query);
-        $client->setMethod(Zend_Http_Client::GET);
-        $response = $client->send();
+        $response = $client->request(Zend_Http_Client::GET);
         return $response;
     }
 
@@ -1250,7 +1258,8 @@ class Zend_Service_Twitter
     {
         $client = $this->getHttpClient();
         $this->prepare($path, $client);
-        return $this->performPost(Zend_Http_Client::POST, $data, $client);
+        $response = $this->performPost(Zend_Http_Client::POST, $data, $client);
+        return $response;
     }
 
     /**
@@ -1271,8 +1280,7 @@ class Zend_Service_Twitter
         } elseif (is_array($data) || is_object($data)) {
             $client->setParameterPost((array) $data);
         }
-        $client->setMethod($method);
-        return $client->send();
+        return $client->request($method);
     }
 
     /**

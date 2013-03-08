@@ -85,7 +85,7 @@ class Zend_Service_Twitter_TwitterTest extends PHPUnit_Framework_TestCase
             $setter = 'setParameter' . ucfirst(strtolower($method));
             $client->expects($this->once())->method($setter)->with($params);
         }
-        $client->expects($this->once())->method('send')->with()
+        $client->expects($this->once())->method('request')->with()
             ->will($this->returnValue($response));
         $response->expects($this->any())->method('getBody')
             ->will($this->returnValue(
@@ -210,7 +210,7 @@ class Zend_Service_Twitter_TwitterTest extends PHPUnit_Framework_TestCase
      */
     public function testRetrievingStatusesWithInvalidScreenNameLengthThrowsInvalidScreenNameException()
     {
-        $this->setExpectedException('\Zend_Service_Twitter_Exception');
+        $this->setExpectedException('Zend_Service_Twitter_Exception');
         $twitter = new Zend_Service_Twitter();
         $twitter->statuses->userTimeline(array('screen_name' => 'abcdef_abc123_abc123x'));
     }
