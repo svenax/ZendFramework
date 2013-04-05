@@ -1,0 +1,18 @@
+This repository is no longer maintained.
+
+If you were following either trunk or the release-1.12 branch,
+development has moved to 
+
+    https://github.com/zendframework/zf1
+
+For older releases or release branches, you can continue to point at this
+repository; it will not be going away, but will not be receiving further
+updates.
+
+For those who are using trunk or the release-1.12 branch, you can continue using
+svn:externals with GitHub if desired; for details, please read:
+
+    http://framework.zend.com/blog/2013-03-27-zf1-git-migration.html
+
+Contributors should familiarize themselves with the workflow outlined in the
+GitHub repository.
